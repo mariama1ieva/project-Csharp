@@ -4,9 +4,9 @@ namespace Repository.Repositories.Interface
 {
     public interface IGroupRepository:IBaseRepository<Group>
     {
-        public string GetGroupByName(string name);
+        public Group GetGroupByName(string name);
 
-        public string GetGroupByCapacity(int capacity);
+        public List<Group> GetGroupByCapacity(int capacity);
     }
     
 }

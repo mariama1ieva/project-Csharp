@@ -5,14 +5,15 @@ namespace Repository.Repositories
 {
     public class GroupRepository : BaseRepository<Group>, IGroupRepository
     {
-        public string GetGroupByCapacity(int capacity)
+        public List<Group> GetGroupByCapacity(int capacity)
         {
-            return AppDbContext<Group>.datas.Where(x => x.Capacity == capacity).ToString();
+            
+            return AppDbContext<Group>.datas.OrderByDescending(x => x.Capacity == capacity).ToList();
         }
 
-        public string GetGroupByName(string name)
+        public Group GetGroupByName(string name)
         {
-            return AppDbContext<Group>.datas.Where(x => x.Name == name).ToString();
+            return AppDbContext<Group>.datas.FirstOrDefault(x => x.Name == name);
         }
     }
 }

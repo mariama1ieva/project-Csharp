@@ -5,8 +5,7 @@ namespace Repository.Repositories.Interface
 {
     public interface IStudentRepository : IBaseRepository<Student>
     {
-        public string SearchByFullName(string fullname);
-
         public List<Student> GetStudentsByAge(int age);
+        List<Student> SearchByFullName(string fullname);
     }
 }
