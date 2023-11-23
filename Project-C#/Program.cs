@@ -1,44 +1,44 @@
 ﻿using Project_C_.Controller;
-using Service.Enum;
-using Service.Helpers;
 
 AccountController accountController = new AccountController();
+GroupController groupController = new GroupController();
+groupController.Create();
 
 
 
-while (true)
-{
-    GetMenues();
-    
-    Operation: string operationStr=Console.ReadLine();
-    int operation;
-    bool isCorrectoperation=int.TryParse(operationStr, out operation);
+//while (true)
+//{
+//    GetMenues();
 
-    if(isCorrectoperation )
-    {
-        switch (operation)
-        {
-            case (int)OperationTypes.AccountRegister:
-                accountController.Register();
-                break;
-            case (int)OperationTypes.AccountLogin:
-                accountController.Login();
-                break;
+//    Operation: string operationStr=Console.ReadLine();
+//    int operation;
+//    bool isCorrectoperation=int.TryParse(operationStr, out operation);
 
-            default:ConsoleColor.Red.WriteConsole("Operation is wrong,Please try again:");
-                goto Operation;
-              
-        }
-    }
-    else
-    {
-        ConsoleColor.Red.WriteConsole("Operation format is wrong,please try again:");
-        goto Operation;
-    }
-}
+//    if(isCorrectoperation )
+//    {
+//        switch (operation)
+//        {
+//            case (int)AccountOperationTypes.AccountRegister:
+//                accountController.Register();
+//                break;
+//            case (int)AccountOperationTypes.AccountLogin:
+//                accountController.Login();
+//                break;
 
-static void GetMenues()
-{
-    Console.WriteLine("Account operations:1 - Register ;  2 - Login");
-}
+//            default:ConsoleColor.Red.WriteConsole("Operation is wrong,Please try again:");
+//                goto Operation;
+
+//        }
+//    }
+//    else
+//    {
+//        ConsoleColor.Red.WriteConsole("Operation format is wrong,please try again:");
+//        goto Operation;
+//    }
+//}
+
+//static void GetMenues()
+//{
+//    Console.WriteLine("Account operations:1 - Register ;  2 - Login");
+//}
 

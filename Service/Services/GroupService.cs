@@ -1,53 +1,56 @@
-﻿using Service.Services.Interface;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
+﻿using Repository.Data;
+using Repository.Repositories;
+using Repository.Repositories.Interface;
+using Service.Services.Interface;
 
 namespace Service.Services
 {
     public class GroupService : IGroupService
     {
-        private  readonly IGroupService _groupService;
+        private readonly IGroupRepository _grouprepository;
         public GroupService()
         {
-            _groupService = new GroupService();
+            _grouprepository = new GroupRepository();
         }
         void IGroupService.Create(Group group)
         {
-            _groupService.Create(group);
+            _grouprepository.Create(group);
+
         }
 
         void IGroupService.Delete(Group group)
         {
-            _groupService.Delete(group);
+            _grouprepository.Delete(group);
         }
 
         void IGroupService.Edit(Group group)
         {
-            _groupService.Edit(group);
+            _grouprepository.Edit(group);
         }
 
         List<Group> IGroupService.GetAll()
         {
-           return _groupService.GetAll();
+            return _grouprepository.GetAll();
         }
 
         Group IGroupService.GetById(int id)
         {
-            return _groupService.GetById(id);
+            return _grouprepository.GetById(id);
         }
 
-        Group IGroupService.SearchByName(string name)
+        Group IGroupService.GetGroupByName(string name)
         {
-           return _groupService.SearchByName(name);
+            return _grouprepository.GetGroupByName(name);
         }
 
-        List<Group> IGroupService.SortingByCapacity(int capacity)
+        List<Group> IGroupService.GetGroupByCapacity(int capacity)
         {
-           return _groupService.SortingByCapacity(capacity);
+            return _grouprepository.GetGroupByCapacity(capacity);
+        }
+
+        public bool UniqueName(string groupname)
+        {
+            return AppDbContext<Group>.datas.Any(x => x.Name != groupname);
         }
     }
 }

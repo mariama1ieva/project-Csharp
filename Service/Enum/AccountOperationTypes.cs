@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Service.Enum
 {
-    public  enum OperationTypes
+    public  enum AccountOperationTypes
     {
         AccountRegister=1,
         AccountLogin,
