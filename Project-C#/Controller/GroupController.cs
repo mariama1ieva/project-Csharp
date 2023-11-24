@@ -148,9 +148,49 @@ namespace Project_C_.Controller
             }
         }
 
+        public void Search()
+        {
+            ConsoleColor.Blue.WriteConsole("Please enter group name which you want to search:");
+        GroupName: string groupname = Console.ReadLine();
+
+            if (!string.IsNullOrWhiteSpace(groupname))
+            {
+                Group name = _groupService.GetGroupByName(groupname);
+                foreach (var item in _groupService.GetAll())
+                {
+                    if (groupname == item.Name)
+                    {
+                        ConsoleColor.Green.WriteConsole($"{item.Name}-{item.Capacity}");
+                    }
+                    else
+                    {
+                        ConsoleColor.Red.WriteConsole("there is not group as this name,please try again:");
+                        goto GroupName;
+                    }
+                }
+            }
+            else
+            {
+                ConsoleColor.Blue.WriteConsole("Can  not be empty:");
+                goto GroupName;
+            }
+
+        }
+
+        public void SortByCapacity()
+        {
+            ConsoleColor.Blue.WriteConsole("Please select one option:(1)-asc  , (2)-des");
+        Capacity: string capacity = Console.ReadLine();
+
+            if (capacity == "1")
+            {
+                Group group = _groupService.GroupByCapacity();
+                ConsoleColor.Green.WriteConsole(group);
+
+            }
+        }
 
 
     }
-
 }
 

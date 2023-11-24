@@ -5,7 +5,8 @@ GroupController groupController = new GroupController();
 groupController.Create();
 //groupController.Delete();
 //groupController.GetById();
-groupController.GetAll();
+//groupController.GetAll();
+groupController.Search();
 
 //while (true)
 //{

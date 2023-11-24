@@ -41,9 +41,9 @@ namespace Service.Services
             return _grouprepository.GetGroupByName(name);
         }
 
-        List<Group> IGroupService.GetGroupByCapacity(int capacity)
+        List<Group> IGroupService.GetGroupByCapacity()
         {
-            return _grouprepository.GetGroupByCapacity(capacity);
+            return _grouprepository.GetGroupByCapacity();
         }
 
         public bool UniqueName(string groupname)
@@ -54,6 +54,12 @@ namespace Service.Services
         public Group CapacityOfGroup(int capacity)
         {
             return _grouprepository.CapacityOfGroup(capacity);
+        }
+
+        public List<Group> GroupByCapacity()
+        {
+            return _grouprepository.GroupByCapacity();
+
         }
     }
 }

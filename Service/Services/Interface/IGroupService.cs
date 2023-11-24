@@ -8,7 +8,8 @@
         Group GetById(int id);
         List<Group> GetAll();
         Group GetGroupByName(string name);
-        List<Group> GetGroupByCapacity(int capacity);
+        List<Group> GetGroupByCapacity();
+        List<Group> GroupByCapacity();
 
         bool UniqueName(string groupname);
 

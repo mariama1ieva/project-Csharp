@@ -21,6 +21,12 @@ namespace Repository.Repositories
             return AppDbContext<Group>.datas.FirstOrDefault(x => x.Name == name);
         }
 
+        public List<Group> GroupByCapacity(int capacity)
+        {
+            return AppDbContext<Group>.datas.OrderBy(x => x.Capacity == capacity).ToList();
+
+        }
+
         public bool UniqueName(string groupname)
         {
             return AppDbContext<Group>.datas.Any(x => x.Name != groupname);
