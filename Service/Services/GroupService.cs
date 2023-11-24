@@ -1,5 +1,4 @@
-﻿using Repository.Data;
-using Repository.Repositories;
+﻿using Repository.Repositories;
 using Repository.Repositories.Interface;
 using Service.Services.Interface;
 
@@ -15,7 +14,6 @@ namespace Service.Services
         void IGroupService.Create(Group group)
         {
             _grouprepository.Create(group);
-
         }
 
         void IGroupService.Delete(Group group)
@@ -50,7 +48,12 @@ namespace Service.Services
 
         public bool UniqueName(string groupname)
         {
-            return AppDbContext<Group>.datas.Any(x => x.Name != groupname);
+            return _grouprepository.UniqueName(groupname);
+        }
+
+        public Group CapacityOfGroup(int capacity)
+        {
+            return _grouprepository.CapacityOfGroup(capacity);
         }
     }
 }

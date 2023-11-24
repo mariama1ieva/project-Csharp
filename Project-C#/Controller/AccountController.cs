@@ -1,5 +1,4 @@
 ﻿using Domain.Models;
-using Repository.Data;
 using Service.Extensions;
 using Service.Helpers.Constant;
 using Service.Helpers.Exceptions;
@@ -14,31 +13,31 @@ namespace Project_C_.Controller
         private readonly IAccountService _accountService;
         public AccountController()
         {
-            _accountService=new AccountService();
+            _accountService = new AccountService();
         }
 
         public void Register()
         {
             ConsoleColor.Blue.WriteConsole("Add name:");
-            Name:string name = Console.ReadLine();
+        Name: string name = Console.ReadLine();
 
-            if(string.IsNullOrWhiteSpace(name) )
+            if (string.IsNullOrWhiteSpace(name))
             {
-                ConsoleColor.Red.WriteConsole(AccountMessages.RequiredField);
+                ConsoleColor.Red.WriteConsole(Messages.RequiredField);
                 goto Name;
             }
 
             ConsoleColor.Blue.WriteConsole("Add surname:");
-           Surname: string surname = Console.ReadLine();
+        Surname: string surname = Console.ReadLine();
 
             if (string.IsNullOrWhiteSpace(surname))
             {
-                ConsoleColor.Red.WriteConsole(AccountMessages.RequiredField);
+                ConsoleColor.Red.WriteConsole(Messages.RequiredField);
                 goto Surname;
             }
 
             ConsoleColor.Blue.WriteConsole("Add Age:");
-            Age: string age=Console.ReadLine();
+        Age: string age = Console.ReadLine();
 
             int ageStr;
 
@@ -51,36 +50,35 @@ namespace Project_C_.Controller
 
             if (string.IsNullOrWhiteSpace(age))
             {
-                ConsoleColor.Red.WriteConsole(AccountMessages.RequiredField);
+                ConsoleColor.Red.WriteConsole(Messages.RequiredField);
                 goto Age;
             }
 
-
             ConsoleColor.Blue.WriteConsole("Add email:");
-            Email: string email = Console.ReadLine();
+        Email: string email = Console.ReadLine();
 
-            if (string.IsNullOrWhiteSpace(email) )
+            if (string.IsNullOrWhiteSpace(email))
             {
-                ConsoleColor.Red.WriteConsole(AccountMessages.RequiredField);
+                ConsoleColor.Red.WriteConsole(Messages.RequiredField);
                 goto Email;
             }
-            else if(!email.Contains("@"))
+            else if (!email.Contains("@"))
             {
                 ConsoleColor.Red.WriteConsole("invalid email,please add again:");
                 goto Email;
             }
 
             ConsoleColor.Blue.WriteConsole("Add password:");
-           Password: string password = Console.ReadLine();
+        Password: string password = Console.ReadLine();
 
             if (string.IsNullOrWhiteSpace(password))
             {
-                ConsoleColor.Red.WriteConsole(AccountMessages.RequiredField);
+                ConsoleColor.Red.WriteConsole(Messages.RequiredField);
                 goto Password;
             }
-            
+
             ConsoleColor.Blue.WriteConsole("Add confirmpassword:");
-            Confirmpassword: string confirmpassword = Console.ReadLine();
+        Confirmpassword: string confirmpassword = Console.ReadLine();
 
             try
             {
@@ -91,7 +89,7 @@ namespace Project_C_.Controller
                 else
                 {
                     throw new FailedException();
-                    
+
                 }
             }
             catch (Exception ex)
@@ -103,7 +101,7 @@ namespace Project_C_.Controller
 
             if (string.IsNullOrWhiteSpace(confirmpassword))
             {
-                ConsoleColor.Red.WriteConsole(AccountMessages.RequiredField);
+                ConsoleColor.Red.WriteConsole(Messages.RequiredField);
                 goto Confirmpassword;
             }
 
@@ -113,7 +111,7 @@ namespace Project_C_.Controller
                 Name = name,
                 Email = email,
                 Password = password,
-                
+
             };
             _accountService.Register(user);
         }
@@ -121,11 +119,11 @@ namespace Project_C_.Controller
         {
             ConsoleColor.Blue.WriteConsole("Add email:");
 
-            Email:string inputEmail = Console.ReadLine();
+        Email: string inputEmail = Console.ReadLine();
 
             if (string.IsNullOrEmpty(inputEmail))
             {
-                ConsoleColor.Red.WriteConsole(AccountMessages.RequiredField);
+                ConsoleColor.Red.WriteConsole(Messages.RequiredField);
                 goto Email;
             }
             else if (!inputEmail.Contains("@"))
@@ -136,11 +134,11 @@ namespace Project_C_.Controller
 
             ConsoleColor.Blue.WriteConsole("Add password:");
 
-            PasswordInput: string inputPassword = Console.ReadLine();
+        PasswordInput: string inputPassword = Console.ReadLine();
 
             if (string.IsNullOrWhiteSpace(inputPassword))
             {
-                ConsoleColor.Red.WriteConsole(AccountMessages.RequiredField);
+                ConsoleColor.Red.WriteConsole(Messages.RequiredField);
                 goto PasswordInput;
             }
 

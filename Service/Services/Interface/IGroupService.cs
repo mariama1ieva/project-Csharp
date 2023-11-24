@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
-
-namespace Service.Services.Interface
+﻿namespace Service.Services.Interface
 {
     public interface IGroupService
     {
@@ -18,6 +11,8 @@ namespace Service.Services.Interface
         List<Group> GetGroupByCapacity(int capacity);
 
         bool UniqueName(string groupname);
+
+        Group CapacityOfGroup(int capacity);
 
     }
 }

@@ -3,8 +3,9 @@
 AccountController accountController = new AccountController();
 GroupController groupController = new GroupController();
 groupController.Create();
-
-
+//groupController.Delete();
+//groupController.GetById();
+groupController.GetAll();
 
 //while (true)
 //{
