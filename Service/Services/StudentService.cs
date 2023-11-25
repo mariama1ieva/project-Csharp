@@ -12,8 +12,10 @@ namespace Service.Services
 
         public StudentService()
         {
-            _studentRepository=new StudentRepository();
+            _studentRepository = new StudentRepository();
         }
+
+
         void IStudentService.Create(Student student)
         {
             _studentRepository.Create(student);
@@ -36,17 +38,18 @@ namespace Service.Services
 
         Student IStudentService.GetById(int id)
         {
-           return _studentRepository.GetById(id);
+            return _studentRepository.GetById(id);
         }
 
-       List <Student> IStudentService.SearchByFullName(string fullName)
+        List<Student> IStudentService.SearchByFullName(string fullName)
         {
             return _studentRepository.SearchByFullName(fullName);
         }
 
+
         List<Student> IStudentService.SortingByAge(int age)
         {
-           return _studentRepository.GetStudentsByAge(age);
+            return _studentRepository.GetStudentsByAge(age);
         }
     }
 }

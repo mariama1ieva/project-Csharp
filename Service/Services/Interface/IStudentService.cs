@@ -1,7 +1,4 @@
 ﻿using Domain.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 
 
 
@@ -18,6 +15,5 @@ namespace Service.Services.Interface
         List<Student> SearchByFullName(string fullName);
 
         List<Student> SortingByAge(int age);
-
     }
 }

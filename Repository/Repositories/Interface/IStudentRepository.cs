@@ -7,5 +7,6 @@ namespace Repository.Repositories.Interface
     {
         public List<Student> GetStudentsByAge(int age);
         List<Student> SearchByFullName(string fullname);
+
     }
 }

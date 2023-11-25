@@ -28,7 +28,7 @@ namespace Project_C_.Controller
             ConsoleColor.Blue.WriteConsole("Add group capacity:");
         Capacity: string capacitystr = Console.ReadLine();
 
-            if (string.IsNullOrEmpty(name))
+            if (string.IsNullOrEmpty(capacitystr))
             {
                 ConsoleColor.Red.WriteConsole(Messages.RequiredField);
                 goto Capacity;
@@ -66,29 +66,43 @@ namespace Project_C_.Controller
 
         public void Delete()
         {
-            ConsoleColor.Blue.WriteConsole("Please input group name which you want to delete:");
-        GroupName: string groupname = Console.ReadLine();
+            ConsoleColor.Blue.WriteConsole("Please input group id which you want to delete:");
+        Id: string idStr = Console.ReadLine();
 
-            if (!string.IsNullOrWhiteSpace(groupname))
+
+            int id;
+
+            bool isCorrectId = int.TryParse(idStr, out id);
+            if (isCorrectId)
             {
-                Group name = _groupService.GetGroupByName(groupname);
 
-                if (name != null)
+                if (!string.IsNullOrWhiteSpace(idStr))
                 {
-                    _groupService.Delete(name);
-                    ConsoleColor.Green.WriteConsole("Group was deleted!");
+                    Group group = _groupService.GetById(id);
+
+                    if (group != null)
+                    {
+                        _groupService.Delete(group);
+                        ConsoleColor.Green.WriteConsole("Group was deleted!");
+                    }
+                    else
+                    {
+                        ConsoleColor.Blue.WriteConsole("Can  not be empty:");
+                        goto Id;
+                    }
                 }
                 else
                 {
-                    ConsoleColor.Red.WriteConsole("There is no same group with the name. Please enter again group name:");
-                    goto GroupName;
+                    ConsoleColor.Red.WriteConsole("There is no same group with the id. Please enter again group id:");
+                    goto Id;
                 }
             }
             else
             {
-                ConsoleColor.Blue.WriteConsole("Can  not be empty:");
-                goto GroupName;
+                ConsoleColor.Red.WriteConsole("Format is wrong,please try again:");
+                goto Id;
             }
+
         }
 
 
@@ -177,18 +191,18 @@ namespace Project_C_.Controller
 
         }
 
-        public void SortByCapacity()
-        {
-            ConsoleColor.Blue.WriteConsole("Please select one option:(1)-asc  , (2)-des");
-        Capacity: string capacity = Console.ReadLine();
+        //public void sortbycapacity()
+        //{
+        //    onsolecolor.blue.writeconsole("please select one option:(1)-asc  , (2)-des");
+        //capacity: string capacity = console.readline();
 
-            if (capacity == "1")
-            {
-                Group group = _groupService.GroupByCapacity();
-                ConsoleColor.Green.WriteConsole(group);
+        //    if (capacity == "1")
+        //    {
+        //        group group = _groupservice.groupbycapacity();
+        //        consolecolor.green.writeconsole(group);
 
-            }
-        }
+        //    }
+        //}
 
 
     }

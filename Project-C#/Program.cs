@@ -1,23 +1,32 @@
 ﻿using Project_C_.Controller;
 
-AccountController accountController = new AccountController();
-GroupController groupController = new GroupController();
-groupController.Create();
+//AccountController accountController = new AccountController();
+//GroupController groupController = new GroupController();
+//groupController.Create();
 //groupController.Delete();
-//groupController.GetById();
-//groupController.GetAll();
-groupController.Search();
+StudentController studentController = new StudentController();
+studentController.Create();
+//studentController.Delete();
+//studentController.GetById();
+//studentController.GetAll();
+studentController.Search();
+
+
+
+
 
 //while (true)
 //{
 //    GetMenues();
 
-//    Operation: string operationStr=Console.ReadLine();
+//Operation: string operationStr = Console.ReadLine();
 //    int operation;
-//    bool isCorrectoperation=int.TryParse(operationStr, out operation);
+//    bool isCorrectoperation = int.TryParse(operationStr, out operation);
 
-//    if(isCorrectoperation )
+//    if (isCorrectoperation)
 //    {
+
+
 //        switch (operation)
 //        {
 //            case (int)AccountOperationTypes.AccountRegister:
@@ -26,10 +35,9 @@ groupController.Search();
 //            case (int)AccountOperationTypes.AccountLogin:
 //                accountController.Login();
 //                break;
-
-//            default:ConsoleColor.Red.WriteConsole("Operation is wrong,Please try again:");
+//            default:
+//                ConsoleColor.Red.WriteConsole("Operation is wrong,Please try again:");
 //                goto Operation;
-
 //        }
 //    }
 //    else
@@ -38,9 +46,9 @@ groupController.Search();
 //        goto Operation;
 //    }
 //}
-
 //static void GetMenues()
 //{
 //    Console.WriteLine("Account operations:1 - Register ;  2 - Login");
 //}
+
 

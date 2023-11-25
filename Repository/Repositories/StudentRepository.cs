@@ -10,12 +10,13 @@ namespace Repository.Repositories
 
         public List<Student> GetStudentsByAge(int age)
         {
-             return AppDbContext<Student>.datas.OrderByDescending(x => x.Age).ToList();
+            return AppDbContext<Student>.datas.OrderByDescending(x => x.Age).ToList();
         }
 
         public List<Student> SearchByFullName(string fullname)
         {
-            return AppDbContext<Student>.datas.Where(x => x.Fullname == fullname).ToList();
+            return AppDbContext<Student>.datas.Where(x => x.Fullname.Contains(fullname)).ToList();
         }
+
     }
 }
