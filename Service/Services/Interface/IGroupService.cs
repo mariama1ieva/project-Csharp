@@ -10,6 +10,9 @@
         List<Group> GetGroupByName(string name);
         bool UniqueName(string groupname);
         List<Group> SortingByCapacity(string text);
+        bool ExistId(int id);
+
+        void Edit(int id, Group group);
 
     }
 }

@@ -13,6 +13,7 @@ StudentController studentController = new StudentController();
 while (true)
 {
     GetMenues();
+
 Operations: string operation = Console.ReadLine();
 
     if (operation == "1")
@@ -52,8 +53,6 @@ Op: string opstr = Console.ReadLine();
             case (int)GroupOperationtypes.GroupGetAll:
                 groupController.GetAll();
                 goto Case;
-            case (int)GroupOperationtypes.GroupEdit:
-                goto Case;
             case (int)GroupOperationtypes.GroupDelete:
                 groupController.Delete();
                 goto Case;
@@ -66,13 +65,14 @@ Op: string opstr = Console.ReadLine();
             case (int)GroupOperationtypes.GroupSort:
                 groupController.Sort();
                 goto Case;
+            case (int)GroupOperationtypes.GroupEdit:
+                groupController.Edit();
+                goto Case;
             case (int)StudentOperationTypes.StudentCreate:
                 studentController.Create();
                 goto Case;
             case (int)StudentOperationTypes.StudentGetAll:
                 studentController.GetAll();
-                goto Case;
-            case (int)StudentOperationTypes.StudentEdit:
                 goto Case;
             case (int)StudentOperationTypes.StudentDelete:
                 studentController.Delete();
@@ -83,21 +83,22 @@ Op: string opstr = Console.ReadLine();
             case (int)StudentOperationTypes.StudentSearch:
                 studentController.Search();
                 goto Case;
-                //case (int)StudentOperationTypes.StudentSort:
-                //    studentController.Sorting();
+            case (int)StudentOperationTypes.StudentSort:
+                studentController.Sort();
+                goto Case;
+            case (int)StudentOperationTypes.StudentEdit:
+                studentController.Edit();
                 goto Case;
 
             default:
                 ConsoleColor.Red.WriteConsole("Operation is wrong,please try again:");
                 goto Op;
-
-
         }
     }
     else
     {
         ConsoleColor.Red.WriteConsole("Operation format is wrong,please try again:");
-        goto Operations;
+        goto Op;
     }
 }
 static void GetMenues()
@@ -107,6 +108,13 @@ static void GetMenues()
 
 static void GetMainMenu()
 {
+
+    Console.ForegroundColor = ConsoleColor.Cyan;
+    Console.WriteLine("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+    Console.WriteLine("       Welcome our aplication");
+    Console.WriteLine("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+    Console.WriteLine("       Please select one operation:     ");
+    Console.ResetColor();
     ConsoleColor.Blue.WriteConsole("Group Operation: (3)-Create; (4)-GetAll; (5)-Edit; (6)-Delete; (7)-GetById; (8)-Search ; (9)-Sort     Student Operation: (10)-Create ; (11)-GetAll; (12)-Edit; (13)-Delete; (14)-GetById; (15)-Search; (16)-Sort");
 }
 

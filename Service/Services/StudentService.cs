@@ -15,6 +15,15 @@ namespace Service.Services
             _studentRepository = new StudentRepository();
         }
 
+        public void Edit(int id, Student student)
+        {
+            _studentRepository.Edit(id, student);
+        }
+
+        public List<Student> SortingByAge(string text)
+        {
+            return _studentRepository.GetStudentsByAge(text);
+        }
 
         void IStudentService.Create(Student student)
         {
@@ -24,11 +33,6 @@ namespace Service.Services
         void IStudentService.Delete(Student student)
         {
             _studentRepository.Delete(student);
-        }
-
-        void IStudentService.Edit(Student student)
-        {
-            _studentRepository.Edit(student);
         }
 
         List<Student> IStudentService.GetAll()
@@ -47,9 +51,6 @@ namespace Service.Services
         }
 
 
-        List<Student> IStudentService.SortingByAge(int age)
-        {
-            return _studentRepository.GetStudentsByAge(age);
-        }
+
     }
 }

@@ -9,6 +9,9 @@ namespace Repository.Repositories.Interface
         bool UniqueName(string groupname);
 
         List<Group> SortByCapacity(string text);
+
+        bool ExistId(int id);
+        void Edit(int id, Group group);
     }
 
 }

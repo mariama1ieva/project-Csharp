@@ -8,7 +8,7 @@ namespace Repository.Repositories
 
         public bool UniqueName(string groupname)
         {
-            return AppDbContext<Group>.datas.Any(x => x.Name != groupname);
+            return AppDbContext<Group>.datas.Any(x => x.Name == groupname);
         }
 
         public List<Group> GetGroupByName(string groupName)
@@ -18,7 +18,7 @@ namespace Repository.Repositories
 
         public List<Group> SortByCapacity(string text)
         {
-            if (text == "acs")
+            if (text == "asc")
             {
                 return AppDbContext<Group>.datas.OrderBy(x => x.Capacity).ToList();
             }
@@ -28,6 +28,25 @@ namespace Repository.Repositories
             }
 
             return null;
+        }
+
+        public bool ExistId(int id)
+        {
+            return AppDbContext<Group>.datas.Any(x => x.Id != id);
+        }
+
+        public void Edit(int id, Group group)
+        {
+
+            Group ExistGroup = AppDbContext<Group>.datas.FirstOrDefault(x => x.Id == id);
+
+            if (!string.IsNullOrWhiteSpace(group.Name))
+            {
+                ExistGroup.Name = group.Name;
+            }
+
+            if (group.Capacity != null)
+                ExistGroup.Capacity = group.Capacity;
         }
     }
 }

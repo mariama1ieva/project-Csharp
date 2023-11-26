@@ -24,6 +24,11 @@ namespace Project_C_.Controller
                 ConsoleColor.Red.WriteConsole(Messages.RequiredField);
                 goto Name;
             }
+            if (_groupService.UniqueName(name))
+            {
+                ConsoleColor.Red.WriteConsole("Please input different name:");
+                goto Name;
+            }
 
             ConsoleColor.Blue.WriteConsole("Add group capacity:");
         Capacity: string capacity = Console.ReadLine();
@@ -196,6 +201,49 @@ namespace Project_C_.Controller
             }
 
         }
+
+        public void Edit()
+        {
+            ConsoleColor.Blue.WriteConsole("Please add Id for editing:");
+        Id: string IdStr = Console.ReadLine();
+
+            int id;
+            bool isCorrectId = int.TryParse(IdStr, out id);
+
+            if (isCorrectId)
+            {
+                var group = _groupService.GetById(id);
+
+            Edit: ConsoleColor.Magenta.WriteConsole("Please,add Name");
+                string name = Console.ReadLine();
+
+
+                ConsoleColor.Magenta.WriteConsole("Please,add Capacity");
+            Capacity: string CapacityStr = Console.ReadLine();
+                int capacity;
+                bool isCorrectCapacity = int.TryParse(CapacityStr, out capacity);
+
+                if (isCorrectCapacity)
+                {
+                    _groupService.Edit(id, new Group { Name = name, Capacity = capacity });
+
+                    ConsoleColor.Green.WriteConsole("Group edit is succes");
+                }
+                else
+                {
+
+                    ConsoleColor.Red.WriteConsole("Format is wrong,please try again:");
+                    goto Edit;
+                }
+
+            }
+            else
+            {
+                ConsoleColor.Red.WriteConsole("Format is wrong,please try again:");
+            }
+        }
+
+
 
     }
 }

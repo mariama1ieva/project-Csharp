@@ -4,7 +4,7 @@ using Service.Helpers.Constant;
 using Service.Helpers.Exceptions;
 using Service.Services;
 using Service.Services.Interface;
-
+using System.Text.RegularExpressions;
 
 namespace Project_C_.Controller
 {
@@ -57,6 +57,9 @@ namespace Project_C_.Controller
             ConsoleColor.Blue.WriteConsole("Add email:");
         Email: string email = Console.ReadLine();
 
+            string pattern = @"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$";
+            Regex regex = new Regex(pattern);
+
             if (string.IsNullOrWhiteSpace(email))
             {
                 ConsoleColor.Red.WriteConsole(Messages.RequiredField);
@@ -67,13 +70,23 @@ namespace Project_C_.Controller
                 ConsoleColor.Red.WriteConsole("invalid email,please add again:");
                 goto Email;
             }
+            else if (!regex.IsMatch(email))
+            {
+                ConsoleColor.Red.WriteConsole("Invalid email , Please add again:");
+                goto Email;
+            }
 
-            ConsoleColor.Blue.WriteConsole("Add password:");
+            ConsoleColor.Blue.WriteConsole("Add password (at least 4 characters):");
         Password: string password = Console.ReadLine();
 
             if (string.IsNullOrWhiteSpace(password))
             {
                 ConsoleColor.Red.WriteConsole(Messages.RequiredField);
+                goto Password;
+            }
+            if (password.Length < 4)
+            {
+                Console.WriteLine("Password is Short");
                 goto Password;
             }
 
@@ -132,6 +145,7 @@ namespace Project_C_.Controller
                 goto Email;
             }
 
+
             ConsoleColor.Blue.WriteConsole("Add password:");
 
         PasswordInput: string inputPassword = Console.ReadLine();
@@ -151,7 +165,8 @@ namespace Project_C_.Controller
             }
             else
             {
-                ConsoleColor.Red.WriteConsole("Invalid email or password. Please try again.");
+                ConsoleColor.Red.WriteConsole("Invalid email or password. Please try again:");
+                goto Email;
                 //return false;
             }
         }

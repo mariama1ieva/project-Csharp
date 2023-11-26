@@ -19,7 +19,7 @@ namespace Project_C_.Controller
 
         public void Create()
         {
-            ConsoleColor.Blue.WriteConsole("Add GroupId:");
+            ConsoleColor.Blue.WriteConsole("Add Group id:");
         Id: string IdStr = Console.ReadLine();
 
             int id;
@@ -27,22 +27,17 @@ namespace Project_C_.Controller
 
             Group group = _groupService.GetById(id);
 
-
-            if (string.IsNullOrEmpty(IdStr))
+            if (_groupService.ExistId(id))
+            {
+                ConsoleColor.Red.WriteConsole("Wrong id,please try again:");
+                goto Id;
+            }
+            else if (string.IsNullOrEmpty(IdStr))
             {
                 ConsoleColor.Red.WriteConsole(Messages.RequiredField);
                 goto Id;
             }
 
-            if (group.Id == id)
-            {
-
-                Create();
-            }
-            else
-            {
-                goto Id;
-            }
 
             ConsoleColor.Blue.WriteConsole("Add student fullname:");
         FullName: string fullname = Console.ReadLine();
@@ -237,12 +232,76 @@ namespace Project_C_.Controller
             }
         }
 
+        public void Sort()
+        {
+            ConsoleColor.Blue.WriteConsole("Please,add sort text");
+            string text = Console.ReadLine();
+
+            List<Student> students = _studentService.SortingByAge(text);
+
+            foreach (var item in students)
+            {
+                ConsoleColor.Green.WriteConsole($"{item.Fullname} - {item.Address} - {item.Group} - {item.Age} - {item.Phone}");
+            }
+        }
+
+        public void Edit()
+        {
+            ConsoleColor.Blue.WriteConsole("Add Id for editing:");
+        Id: string IdStr = Console.ReadLine();
+
+            int id;
+            bool isCorrectId = int.TryParse(IdStr, out id);
+
+            if (isCorrectId)
+            {
+                var group = _studentService.GetById(id);
+
+                ConsoleColor.Blue.WriteConsole("Add full name:");
+                string Fullname = Console.ReadLine();
+
+                ConsoleColor.Blue.WriteConsole("Add adress:");
+                string adress = Console.ReadLine();
+
+                ConsoleColor.Blue.WriteConsole("Add phone:");
+                string phone = Console.ReadLine();
+
+                ConsoleColor.Blue.WriteConsole(" Add GroupId");
+            Age: string AgeStr = Console.ReadLine();
+                int age;
+                bool isCorrectAge = int.TryParse(AgeStr, out age);
+                if (!isCorrectAge)
+                {
+                    ConsoleColor.Red.WriteConsole("Format is wrong,please try again:");
+                    goto Age;
+                }
+
+                ConsoleColor.Blue.WriteConsole("Add group Id ");
+
+            GroupId: string Idstr = Console.ReadLine();
+
+                int groupId;
+                bool isCorrectGroupId = int.TryParse(Idstr, out groupId);
+                if (!isCorrectAge)
+                {
+                    ConsoleColor.Red.WriteConsole("Format is wrong,please try again:");
+                    goto Age;
+                }
+                else
+                {
+                    var response = _groupService.GetById(groupId);
+                }
+
+                _studentService.Edit(id, new Student { Fullname = Fullname, Address = adress, Age = age, Phone = phone });
+
+                ConsoleColor.Green.WriteConsole(" Editing is succesful");
+            }
+            else
+            {
+                ConsoleColor.Red.WriteConsole("Format is wrong,please try again:");
+            }
 
 
-
-
-
-
-
+        }
     }
 }

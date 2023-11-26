@@ -50,5 +50,15 @@ namespace Service.Services
         {
             return _grouprepository.SortByCapacity(text);
         }
+
+        public bool ExistId(int id)
+        {
+            return _grouprepository.ExistId(id);
+        }
+
+        public void Edit(int id, Group group)
+        {
+            _grouprepository.Edit(id, group);
+        }
     }
 }
