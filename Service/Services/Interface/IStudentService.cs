@@ -16,5 +16,8 @@ namespace Service.Services.Interface
         List<Student> SortingByAge(string text);
 
         public void Edit(int id, Student student);
+
+        bool UniqueName(string fullname);
+
     }
 }

@@ -21,11 +21,6 @@ namespace Service.Services
             _grouprepository.Delete(group);
         }
 
-        void IGroupService.Edit(Group group)
-        {
-            _grouprepository.Edit(group);
-        }
-
         List<Group> IGroupService.GetAll()
         {
             return _grouprepository.GetAll();
@@ -50,12 +45,6 @@ namespace Service.Services
         {
             return _grouprepository.SortByCapacity(text);
         }
-
-        public bool ExistId(int id)
-        {
-            return _grouprepository.ExistId(id);
-        }
-
         public void Edit(int id, Group group)
         {
             _grouprepository.Edit(id, group);

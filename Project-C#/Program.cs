@@ -115,7 +115,7 @@ static void GetMainMenu()
     Console.WriteLine("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
     Console.WriteLine("       Please select one operation:     ");
     Console.ResetColor();
-    ConsoleColor.Blue.WriteConsole("Group Operation: (3)-Create; (4)-GetAll; (5)-Edit; (6)-Delete; (7)-GetById; (8)-Search ; (9)-Sort     Student Operation: (10)-Create ; (11)-GetAll; (12)-Edit; (13)-Delete; (14)-GetById; (15)-Search; (16)-Sort");
+    ConsoleColor.Blue.WriteConsole("Group Operation: (1)-Create; (2)-GetAll; (3)-Edit; (4)-Delete; (5)-GetById; (6)-Search ; (7)-Sort     Student Operation: (8)-Create ; (9)-GetAll; (10)-Edit; (11)-Delete; (12)-GetById; (13)-Search; (14)-Sort");
 }
 
 

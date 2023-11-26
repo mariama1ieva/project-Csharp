@@ -115,21 +115,14 @@ namespace Project_C_.Controller
             if (isCorrect)
             {
                 Group group = _groupService.GetById(Id);
-
-                if (group != null)
-                {
-                    foreach (var item in _groupService.GetAll())
-                    {
-                        ConsoleColor.Green.WriteConsole($"{item.Name}-{item.Capacity}");
-                    }
-
-                }
-                else
-                {
-                    ConsoleColor.Red.WriteConsole("Please try again:");
-                    goto Id;
-                }
+                ConsoleColor.Green.WriteConsole($"{group.Name}-{group.Capacity}");
             }
+            else
+            {
+                ConsoleColor.Red.WriteConsole("Please try again:");
+                goto Id;
+            }
+
         }
 
         public void GetAll()
@@ -169,7 +162,7 @@ namespace Project_C_.Controller
             {
                 List<Group> groups = _groupService.GetGroupByName(name);
 
-                if (groups != null)
+                if (_groupService.UniqueName(name))
                 {
                     foreach (var item in groups)
                     {

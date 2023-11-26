@@ -49,6 +49,10 @@ namespace Service.Services
         {
             return _studentRepository.SearchByFullName(fullName);
         }
+        public bool UniqueName(string fullname)
+        {
+            return _studentRepository.UniqueName(fullname);
+        }
 
 
 

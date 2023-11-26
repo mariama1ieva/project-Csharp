@@ -2,7 +2,7 @@
 {
     public enum StudentOperationTypes
     {
-        StudentCreate = 10,
+        StudentCreate = 8,
         StudentGetAll,
         StudentEdit,
         StudentDelete,

@@ -27,7 +27,7 @@ namespace Project_C_.Controller
 
             Group group = _groupService.GetById(id);
 
-            if (_groupService.ExistId(id))
+            if (group is null)
             {
                 ConsoleColor.Red.WriteConsole("Wrong id,please try again:");
                 goto Id;
@@ -80,7 +80,6 @@ namespace Project_C_.Controller
                     ConsoleColor.Red.WriteConsole("Format is wrong,try again:");
                     goto Age;
                 }
-
             }
 
             Student student = new()
@@ -154,19 +153,7 @@ namespace Project_C_.Controller
             {
                 Student student = _studentService.GetById(Id);
 
-                if (student != null)
-                {
-                    foreach (var item in _studentService.GetAll())
-                    {
-                        ConsoleColor.Green.WriteConsole($"{item.Fullname}-{item.Address}-{item.Group}-{item.Age}");
-                    }
-
-                }
-                else
-                {
-                    ConsoleColor.Red.WriteConsole("Please try again:");
-                    goto Id;
-                }
+                ConsoleColor.Green.WriteConsole($"{student.Fullname}-{student.Address}-{student.Group}-{student.Age}");
             }
             else
             {
@@ -212,7 +199,7 @@ namespace Project_C_.Controller
             {
                 List<Student> student = _studentService.SearchByFullName(fullname);
 
-                if (student != null)
+                if (_studentService.UniqueName(fullname))
                 {
                     foreach (var item in student)
                     {

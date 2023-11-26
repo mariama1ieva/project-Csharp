@@ -38,7 +38,10 @@ namespace Repository.Repositories
 
             }
 
-
+        }
+        public bool UniqueName(string fullname)
+        {
+            return AppDbContext<Student>.datas.Any(x => x.Fullname.Contains(fullname));
         }
     }
 }

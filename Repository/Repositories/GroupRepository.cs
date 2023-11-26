@@ -8,7 +8,7 @@ namespace Repository.Repositories
 
         public bool UniqueName(string groupname)
         {
-            return AppDbContext<Group>.datas.Any(x => x.Name == groupname);
+            return AppDbContext<Group>.datas.Any(x => x.Name.Contains(groupname));
         }
 
         public List<Group> GetGroupByName(string groupName)
@@ -29,12 +29,6 @@ namespace Repository.Repositories
 
             return null;
         }
-
-        public bool ExistId(int id)
-        {
-            return AppDbContext<Group>.datas.Any(x => x.Id != id);
-        }
-
         public void Edit(int id, Group group)
         {
 

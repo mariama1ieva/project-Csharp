@@ -2,7 +2,7 @@
 {
     public enum GroupOperationtypes
     {
-        GroupCreate = 3,
+        GroupCreate = 1,
         GroupGetAll,
         GroupEdit,
         GroupDelete,

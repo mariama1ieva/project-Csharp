@@ -8,6 +8,7 @@ namespace Repository.Repositories.Interface
         public List<Student> GetStudentsByAge(string text);
         List<Student> SearchByFullName(string fullname);
         void Edit(int id, Student student);
+        bool UniqueName(string groupname);
 
 
     }
