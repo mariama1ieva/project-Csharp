@@ -1,54 +1,113 @@
 ﻿using Project_C_.Controller;
+using Service.Enum;
+using Service.Extensions;
 
-//AccountController accountController = new AccountController();
-//GroupController groupController = new GroupController();
-//groupController.Create();
-//groupController.Delete();
+AccountController accountController = new AccountController();
+GroupController groupController = new GroupController();
 StudentController studentController = new StudentController();
-studentController.Create();
-//studentController.Delete();
-//studentController.GetById();
-//studentController.GetAll();
-studentController.Search();
 
 
 
 
 
-//while (true)
-//{
-//    GetMenues();
+while (true)
+{
+    GetMenues();
+Operations: string operation = Console.ReadLine();
 
-//Operation: string operationStr = Console.ReadLine();
-//    int operation;
-//    bool isCorrectoperation = int.TryParse(operationStr, out operation);
+    if (operation == "1")
+    {
+        accountController.Register();
+        goto Operations;
 
-//    if (isCorrectoperation)
-//    {
+    }
+    else if (operation == "2")
+    {
+        accountController.Login();
+
+    }
+    else
+    {
+        ConsoleColor.Red.WriteConsole("Operation is wrong,please try again:");
+        goto Operations;
+    }
 
 
-//        switch (operation)
-//        {
-//            case (int)AccountOperationTypes.AccountRegister:
-//                accountController.Register();
-//                break;
-//            case (int)AccountOperationTypes.AccountLogin:
-//                accountController.Login();
-//                break;
-//            default:
-//                ConsoleColor.Red.WriteConsole("Operation is wrong,Please try again:");
-//                goto Operation;
-//        }
-//    }
-//    else
-//    {
-//        ConsoleColor.Red.WriteConsole("Operation format is wrong,please try again:");
-//        goto Operation;
-//    }
-//}
-//static void GetMenues()
-//{
-//    Console.WriteLine("Account operations:1 - Register ;  2 - Login");
-//}
+
+
+
+Case: GetMainMenu();
+
+Op: string opstr = Console.ReadLine();
+    int op;
+    bool isCorrectOp = int.TryParse(opstr, out op);
+
+    if (isCorrectOp)
+    {
+        switch (op)
+        {
+            case (int)GroupOperationtypes.GroupCreate:
+                groupController.Create();
+                goto Case;
+            case (int)GroupOperationtypes.GroupGetAll:
+                groupController.GetAll();
+                goto Case;
+            case (int)GroupOperationtypes.GroupEdit:
+                goto Case;
+            case (int)GroupOperationtypes.GroupDelete:
+                groupController.Delete();
+                goto Case;
+            case (int)GroupOperationtypes.GroupGetById:
+                groupController.GetById();
+                goto Case;
+            case (int)GroupOperationtypes.GroupSearch:
+                groupController.Search();
+                goto Case;
+            case (int)GroupOperationtypes.GroupSort:
+                groupController.Sort();
+                goto Case;
+            case (int)StudentOperationTypes.StudentCreate:
+                studentController.Create();
+                goto Case;
+            case (int)StudentOperationTypes.StudentGetAll:
+                studentController.GetAll();
+                goto Case;
+            case (int)StudentOperationTypes.StudentEdit:
+                goto Case;
+            case (int)StudentOperationTypes.StudentDelete:
+                studentController.Delete();
+                goto Case;
+            case (int)StudentOperationTypes.StudentGetById:
+                studentController.GetById();
+                goto Case;
+            case (int)StudentOperationTypes.StudentSearch:
+                studentController.Search();
+                goto Case;
+                //case (int)StudentOperationTypes.StudentSort:
+                //    studentController.Sorting();
+                goto Case;
+
+            default:
+                ConsoleColor.Red.WriteConsole("Operation is wrong,please try again:");
+                goto Op;
+
+
+        }
+    }
+    else
+    {
+        ConsoleColor.Red.WriteConsole("Operation format is wrong,please try again:");
+        goto Operations;
+    }
+}
+static void GetMenues()
+{
+    Console.WriteLine("Account operations:1 - Register ;  2 - Login");
+}
+
+static void GetMainMenu()
+{
+    ConsoleColor.Blue.WriteConsole("Group Operation: (3)-Create; (4)-GetAll; (5)-Edit; (6)-Delete; (7)-GetById; (8)-Search ; (9)-Sort     Student Operation: (10)-Create ; (11)-GetAll; (12)-Edit; (13)-Delete; (14)-GetById; (15)-Search; (16)-Sort");
+}
 
 

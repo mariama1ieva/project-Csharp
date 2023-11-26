@@ -7,10 +7,9 @@
         public void Delete(Group group);
         Group GetById(int id);
         List<Group> GetAll();
-        Group GetGroupByName(string name);
+        List<Group> GetGroupByName(string name);
         bool UniqueName(string groupname);
-
-        Group CapacityOfGroup(int capacity);
+        List<Group> SortingByCapacity(string text);
 
     }
 }

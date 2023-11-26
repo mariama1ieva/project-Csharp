@@ -5,21 +5,29 @@ namespace Repository.Repositories
 {
     public class GroupRepository : BaseRepository<Group>, IGroupRepository
     {
-        public Group CapacityOfGroup(int capacity)
-        {
-            return AppDbContext<Group>.datas.FirstOrDefault(x => x.Capacity == capacity);
-        }
-
-
-        public Group GetGroupByName(string name)
-        {
-            return AppDbContext<Group>.datas.FirstOrDefault(x => x.Name == name);
-        }
-
 
         public bool UniqueName(string groupname)
         {
             return AppDbContext<Group>.datas.Any(x => x.Name != groupname);
+        }
+
+        public List<Group> GetGroupByName(string groupName)
+        {
+            return AppDbContext<Group>.datas.Where(x => x.Name.ToLower().Contains(groupName)).ToList();
+        }
+
+        public List<Group> SortByCapacity(string text)
+        {
+            if (text == "acs")
+            {
+                return AppDbContext<Group>.datas.OrderBy(x => x.Capacity).ToList();
+            }
+            else if (text == "desc")
+            {
+                return AppDbContext<Group>.datas.OrderByDescending(x => x.Capacity).ToList();
+            }
+
+            return null;
         }
     }
 }

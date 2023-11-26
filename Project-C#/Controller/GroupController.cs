@@ -26,41 +26,30 @@ namespace Project_C_.Controller
             }
 
             ConsoleColor.Blue.WriteConsole("Add group capacity:");
-        Capacity: string capacitystr = Console.ReadLine();
+        Capacity: string capacity = Console.ReadLine();
+            int capacityStr = 0;
 
-            if (string.IsNullOrEmpty(capacitystr))
+
+            if (!string.IsNullOrEmpty(capacity))
             {
-                ConsoleColor.Red.WriteConsole(Messages.RequiredField);
-                goto Capacity;
-            }
 
-            int capacity;
+                bool isCorrectCapacity = int.TryParse(capacity, out capacityStr);
+                if (!isCorrectCapacity)
+                {
+                    ConsoleColor.Red.WriteConsole("Format is wrong,try again:");
+                    goto Capacity;
+                }
 
-            bool isCorrectCapacity = int.TryParse(capacitystr, out capacity);
-            if (isCorrectCapacity)
-            {
-                _groupService.Create(new Group { Name = name, Capacity = capacity });
-                ConsoleColor.Green.WriteConsole("Create process successful");
-
-            }
-            else if (!_groupService.UniqueName(name))
-            {
-                ConsoleColor.Green.WriteConsole("Create process successful");
-            }
-
-            else
-            {
-                ConsoleColor.DarkRed.WriteConsole("There is group with same name,please input again:");
-                goto Name;
             }
 
             Group group = new()
             {
                 Name = name,
-                Capacity = capacity,
+                Capacity = capacityStr,
             };
 
             _groupService.Create(group);
+            ConsoleColor.Green.WriteConsole("Create process successful");
 
         }
 
@@ -121,16 +110,20 @@ namespace Project_C_.Controller
             if (isCorrect)
             {
                 Group group = _groupService.GetById(Id);
-                foreach (var item in _groupService.GetAll())
-                {
-                    ConsoleColor.Green.WriteConsole($"{item.Name}-{item.Capacity}");
-                }
 
-            }
-            else
-            {
-                ConsoleColor.Red.WriteConsole("Format is wrong,please try again:");
-                goto Id;
+                if (group != null)
+                {
+                    foreach (var item in _groupService.GetAll())
+                    {
+                        ConsoleColor.Green.WriteConsole($"{item.Name}-{item.Capacity}");
+                    }
+
+                }
+                else
+                {
+                    ConsoleColor.Red.WriteConsole("Please try again:");
+                    goto Id;
+                }
             }
         }
 
@@ -165,45 +158,44 @@ namespace Project_C_.Controller
         public void Search()
         {
             ConsoleColor.Blue.WriteConsole("Please enter group name which you want to search:");
-        GroupName: string groupname = Console.ReadLine();
+        GroupName: string name = Console.ReadLine();
 
-            if (!string.IsNullOrWhiteSpace(groupname))
+            if (!string.IsNullOrWhiteSpace(name))
             {
-                Group name = _groupService.GetGroupByName(groupname);
-                foreach (var item in _groupService.GetAll())
+                List<Group> groups = _groupService.GetGroupByName(name);
+
+                if (groups != null)
                 {
-                    if (groupname == item.Name)
+                    foreach (var item in groups)
                     {
                         ConsoleColor.Green.WriteConsole($"{item.Name}-{item.Capacity}");
                     }
-                    else
-                    {
-                        ConsoleColor.Red.WriteConsole("there is not group as this name,please try again:");
-                        goto GroupName;
-                    }
+                }
+                else
+                {
+                    ConsoleColor.Red.WriteConsole("there is not group as this name,please try again:");
+                    goto GroupName;
                 }
             }
             else
             {
-                ConsoleColor.Blue.WriteConsole("Can  not be empty:");
+                ConsoleColor.Red.WriteConsole("Can  not be empty:");
                 goto GroupName;
+            }
+        }
+
+        public void Sort()
+        {
+            ConsoleColor.Blue.WriteConsole("Please,add sort text");
+            string text = Console.ReadLine();
+            List<Group> groups = _groupService.SortingByCapacity(text);
+
+            foreach (var item in groups)
+            {
+                ConsoleColor.Green.WriteConsole($"{item.Name} - {item.Capacity}");
             }
 
         }
-
-        //public void sortbycapacity()
-        //{
-        //    onsolecolor.blue.writeconsole("please select one option:(1)-asc  , (2)-des");
-        //capacity: string capacity = console.readline();
-
-        //    if (capacity == "1")
-        //    {
-        //        group group = _groupservice.groupbycapacity();
-        //        consolecolor.green.writeconsole(group);
-
-        //    }
-        //}
-
 
     }
 }

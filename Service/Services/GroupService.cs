@@ -36,21 +36,19 @@ namespace Service.Services
             return _grouprepository.GetById(id);
         }
 
-        Group IGroupService.GetGroupByName(string name)
-        {
-            return _grouprepository.GetGroupByName(name);
-        }
-
         public bool UniqueName(string groupname)
         {
             return _grouprepository.UniqueName(groupname);
         }
 
-        public Group CapacityOfGroup(int capacity)
+        public List<Group> GetGroupByName(string name)
         {
-            return _grouprepository.CapacityOfGroup(capacity);
+            return _grouprepository.GetGroupByName(name);
         }
 
-
+        public List<Group> SortingByCapacity(string text)
+        {
+            return _grouprepository.SortByCapacity(text);
+        }
     }
 }

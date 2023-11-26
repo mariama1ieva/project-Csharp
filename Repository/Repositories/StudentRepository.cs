@@ -15,7 +15,7 @@ namespace Repository.Repositories
 
         public List<Student> SearchByFullName(string fullname)
         {
-            return AppDbContext<Student>.datas.Where(x => x.Fullname.Contains(fullname)).ToList();
+            return AppDbContext<Student>.datas.Where(x => x.Fullname.ToLower().Contains(fullname)).ToList();
         }
 
     }

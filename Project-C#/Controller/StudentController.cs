@@ -9,13 +9,41 @@ namespace Project_C_.Controller
     public class StudentController
     {
         private readonly IStudentService _studentService;
+        private readonly IGroupService _groupService;
         public StudentController()
         {
             _studentService = new StudentService();
+            _groupService = new GroupService();
         }
+
 
         public void Create()
         {
+            ConsoleColor.Blue.WriteConsole("Add GroupId:");
+        Id: string IdStr = Console.ReadLine();
+
+            int id;
+            bool isCorrectId = int.TryParse(IdStr, out id);
+
+            Group group = _groupService.GetById(id);
+
+
+            if (string.IsNullOrEmpty(IdStr))
+            {
+                ConsoleColor.Red.WriteConsole(Messages.RequiredField);
+                goto Id;
+            }
+
+            if (group.Id == id)
+            {
+
+                Create();
+            }
+            else
+            {
+                goto Id;
+            }
+
             ConsoleColor.Blue.WriteConsole("Add student fullname:");
         FullName: string fullname = Console.ReadLine();
 
@@ -66,7 +94,7 @@ namespace Project_C_.Controller
                 Age = ageStr,
                 Phone = phone,
                 Address = address,
-                //Group = group
+                Group = group
             };
 
             _studentService.Create(student);
